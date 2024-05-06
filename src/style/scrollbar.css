@@ -1,0 +1,28 @@
+
+.message-container::-webkit-scrollbar,
+.online__list::-webkit-scrollbar {
+    width: 4px;
+}
+  
+.message-container::-webkit-scrollbar-track,
+.online__list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.message-container::-webkit-scrollbar-thumb,
+.online__list::-webkit-scrollbar-thumb {
+    background: var(--grey);
+    border-radius: 10px;
+}
+
+.message-container::-webkit-scrollbar-thumb:hover,
+.online__list::-webkit-scrollbar-thumb:hover {
+    width: 10px;
+    background: var(--dark-grey);
+}
+
+.message-container::-webkit-scrollbar-thumb:active,
+.online__list::-webkit-scrollbar-thumb:active {
+    background: var(--feature-color, #02a19b);;
+}

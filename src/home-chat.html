@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Home Chat</title>
+  </head>
+  <body>
+    <h1 class="title">Home Chat</h1>
+    <div class="main">
+      <div class="chat">
+        <div class="chat__user">
+          <img id="user-avatar" class="chat__user-avatar" alt="Avatar">
+          <div class="chat__user-name" id="user-name">Anonimus</div>
+
+          <div class="kebab-online">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <ul class="message-container" id="message-container">
+          <li class="message message-left">
+            <p class="message-text">
+              Lorem impsun
+              <span>20 april 20:00 </span>
+            </p>
+          </li>
+          <li class="message message-right">
+            <!-- <img src="https://robohash.org/text.jpg?size=256x256" alt="Message image"> -->
+            <p class="message-text">
+              <span>20 april 20:00 </span>
+            </p>
+          </li>
+
+        </ul>
+        <div class="image-preview__wrapper" id="preview-wrapper"></div>
+        <form id="message-form" class="message-form">
+            
+            <input
+              type="text"
+              name="message"
+              id="message-input"
+              class="message-input"
+              placeholder="Напишите сообщение..."
+            />
+            <input type="file" name="image" id="image-input" accept=".jpg, .jpeg, .png" hidden/>
+            <label for="image-input" class="image-input">
+              <i class="fas fa-paperclip"></i>
+            </label>
+            <div class="divider"></div>
+            <button type="submit" class="button-send">
+              <span><i class="fa fa-arrow-up"></i></span>
+            </button>
+
+        </form>
+      </div>
+
+      <div class="online">
+        <div class="online__total">
+          <span>
+            <i class="fa fa-users"></i>
+          </span>
+          <div class="online__total-title" id="online__total-title">
+          </div>
+          <div class="online-close"></div>
+        </div>
+        <ul class="online__list" id="online__list">
+        </ul>
+        <div class="online__footer"></div>
+      </div>
+    </div>
+
+    <!-- <script src="index.js"></script> -->
+  </body>
+</html>
