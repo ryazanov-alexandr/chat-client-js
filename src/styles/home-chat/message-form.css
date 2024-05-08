@@ -1,0 +1,63 @@
+.message-form {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  min-height: 64px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.message-input {
+  flex-grow: 1;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  max-height: 48px;
+  align-self: center;
+  overflow: hidden;
+  color: var(--dark-grey, #2d2d2d);
+  white-space: pre-line;
+}
+
+.message-input:empty::before {
+  content: "Напишите сообщение...";
+  color: var(--grey, #676767);
+  cursor: text;
+}
+
+#image-input:disabled + label,
+.button-send:disabled {
+  background-color: var(--frame-header-bgc, #eeeeee);
+  color: var(--grey, #676767);
+  scale: unset;
+  cursor: auto;
+}
+
+.image-input {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  color: #2d2d2d;
+  padding-inline: 12px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-send {
+  font-family: inherit;
+  background-color: #fff;
+  color: var(--dark-grey, #2d2d2d);
+  padding: 0px 30px;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.divider {
+  background-color: #ebebeb;
+  width: 2px;
+}

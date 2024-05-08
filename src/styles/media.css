@@ -1,0 +1,139 @@
+@media (hover: hover) {
+  #image-input:hover:enabled + label i,
+  .button-send:hover:enabled i {
+    color: var(--feature-color, #02a19b);
+    scale: 1.1;
+  }
+
+  .chat-link:hover {
+    background: transparent;
+    color: var(--dark-blue, #05031d);
+    border-color: var(--dark-blue, #05031d);
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .main__wrapper {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    height: 100dvh;
+  }
+  .greetings {
+    padding-top: 0px;
+    justify-content: center;
+  }
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+  .main__wrapper {
+    position: relative;
+    min-width: 350px;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .chat {
+    height: unset;
+    flex-grow: 1;
+  }
+  .message-form {
+    min-height: 64px;
+  }
+  .message {
+    max-width: 60%;
+  }
+
+  .message-author {
+    font-size: 0.9em;
+  }
+
+  .message-text {
+    font-size: 18px;
+  }
+
+  .message-date {
+    font-size: 0.7em;
+  }
+  .online {
+    position: absolute;
+    width: 50%;
+    height: calc(100dvh - 64px);
+    border-radius: 0;
+    left: -100%;
+    color: #eee;
+    transition: all 0.5s ease-in-out;
+  }
+  .online.show {
+    left: 0;
+  }
+  .online-close {
+    display: block;
+  }
+  .online__total {
+    background-color: var(--online-bgc, #0c0c0c);
+    color: #eee;
+  }
+  .online__total::before {
+    content: "";
+    background-color: #eee;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    bottom: 0;
+  }
+
+  .online__list {
+    background-color: var(--online-bgc, #0c0c0c);
+    color: inherit;
+  }
+  .online__list::-webkit-scrollbar-thumb {
+    width: 10px;
+    background: var(--feature-color, #02a19b);
+  }
+  .online__user {
+    background-color: var(--online-bgc, #0c0c0c);
+  }
+  .online__user-name {
+    color: var(--feature-color, #02a19b);
+  }
+  .online__user-img {
+    border: 1px solid var(--feature-color, #02a19b);
+  }
+  .online__user::after {
+    background-color: #eee;
+    height: 0.5px;
+    left: 4px;
+    right: 8px;
+  }
+  .online__footer {
+    display: none;
+    background-color: var(--online-bgc, #0c0c0c);
+  }
+
+  .kebab-online {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    padding: 4px 2px 0px 2px;
+  }
+  .chat {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid var(--border, #dddddd);
+  }
+  .online {
+    width: 100%;
+    border-radius: 0;
+  }
+  .message {
+    max-width: 70%;
+  }
+}

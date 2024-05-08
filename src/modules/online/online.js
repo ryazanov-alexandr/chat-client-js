@@ -3,7 +3,7 @@ import { socket } from "../socket/socket.js";
 export const online = () => {
   const userName = document.getElementById("user-name");
   const userAvatar = document.getElementById("user-avatar");
-  const onlineTotal = document.getElementById("online__total-title");
+  const onlineTotal = document.querySelector(".online__total-title > span");
   const onlineList = document.getElementById("online__list");
   const online = document.querySelector(".online");
   socket.emit("connect user", {
@@ -13,12 +13,11 @@ export const online = () => {
 
   socket.on("connect user", (data) => {
     onlineList.innerHTML = "";
-
     data.map((user) => {
       addUserToOnlineList(user);
     });
     
-    onlineTotal.innerText = `Онлайн: ${data.length}`;
+    onlineTotal.textContent = `${data.length}`;
   });
 
   document.querySelector(".kebab-online").addEventListener('click', toggleOnlineShow)

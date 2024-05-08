@@ -21,14 +21,14 @@ export const chat = () => {
     addMessageToChat(message, false);
   });
 
-  socket.on("feedback", async (data) => {
+  socket.on("feedback", async (feedback) => {
     clearFeedback();
-
-    if (!data.feedback) return;
+    console.log(feedback);
+    if (!feedback) return;
 
     const element = `
                 <li class="message-feedback">
-                    <p class="feedback">${data.feedback}</p>
+                    <p class="feedback">${feedback}</p>
                 </li>
             `;
     messageContainer.innerHTML += element;
@@ -56,29 +56,22 @@ export const chat = () => {
         <div class="image-preview-close"></div>
       </div>
     `;
-    imagePreviewWrapper.innerHTML += element;
+    imagePreviewWrapper.innerHTML = element;
     imagePreviewWrapper.classList.add("active");
     scrollToBottom();
   }
 
-  messageInput.addEventListener('focus', () => {
-    var displayHeight = window.innerHeight - document.body.scrollTop;
-    document.body.style.height = displayHeight + "px";
-  }, true);
-
   messageInput.addEventListener('keypress', () => {
-    socket.emit("feedback", {
-      feedback: `${userName.textContent} набирает сообщение...`,
-    });
+    sendFeedback(`${userName.textContent} набирает сообщение...`);
   }, true);
 
   messageInput.addEventListener("blur", () => {
-    socket.emit("feedback", {
-      feedback: '',
-    });
-
-    document.body.style.height = "100dvh";
+    sendFeedback('') 
   });
+
+  function sendFeedback(text) {
+    socket.emit("feedback", text);
+  }  
 
   imageInput.addEventListener("change", async (e) => {
     scrollToBottom();
@@ -98,17 +91,23 @@ export const chat = () => {
   messageForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (messageInput.value || imageBase64) {
+    sendMessage();
+  });
+
+  messageInput.addEventListener("keydown", function (e) {
+    if(!e.shiftKey && e.key === 'Enter') {
+      e.preventDefault();
       sendMessage();
-      messageInput.value = "";
-      if(imageBase64) removeImagePreview()
-    }
+    };
   });
 
   async function sendMessage() {
+    messageInput.textContent = messageInput.textContent.trim();
+    if (!messageInput.textContent && !imageBase64) return
+
     const data = {
       author: userName.textContent,
-      text: messageInput.value,
+      text: messageInput.textContent,
       dateTime: new Date(),
       imageBase64
     };
@@ -119,6 +118,8 @@ export const chat = () => {
     setDisabledForm(false);
     messageInput.focus();
 
+    messageInput.textContent = "";
+    if(imageBase64) removeImagePreview()
   }
 
   async function addMessageToChat(data, isOwnMessage) {
@@ -146,13 +147,15 @@ export const chat = () => {
     messageElement.className = className;
 
     messageElement.innerHTML += `
-        <p class="message-inner">
-            ${!isOwnMessage ? '<span class="message-user">'+message.author+'</span>': ''}
-            <span class="message-text">${message.text}</span>
-            <span class="message-date">
-              ${moment(message.dateTime).locale('ru').format('HH:mm')}
-            </span>
-        </p>
+        <div class="message-inner">
+            ${!isOwnMessage ? '<span class="message-author">'+message.author+'</span>': ''}
+            <p class="message-text__wrapper">
+              <span class="message-text">${message.text}</span>
+              <span class="message-date">
+                ${moment(message.dateTime).locale('ru').format('HH:mm')}
+              </span>
+            </p>
+        </div>
     `;
 
     return messageElement;
