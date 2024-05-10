@@ -37,7 +37,9 @@ module.exports = {
         new MiniCssExtractPlugin({
           filename: '[name].[contenthash].css',
         }),
-        new Dotenv(),      
+        new Dotenv({
+          systemvars: true
+        }),      
       ),
     module: {
         rules: [
