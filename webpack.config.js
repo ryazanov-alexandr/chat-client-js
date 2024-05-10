@@ -12,7 +12,7 @@ const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'source-map' : undefined;
 
-const pages = ["index", "home-chat"];
+const pages = ["index", "chat"];
 
 module.exports = {
     mode,

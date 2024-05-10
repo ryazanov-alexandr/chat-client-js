@@ -1,4 +1,4 @@
-import "./home-chat.html";
+import "./chat.html";
 import "./style.css";
 
 import { chat } from "./modules/chat/chat";
